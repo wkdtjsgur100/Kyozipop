@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.kyozipop.kyozipop"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    defaultConfig {
+        multiDexEnabled true
+    }
+    sourceSets{
+        main{
+            aidl.srcDirs = ['src/main/java']
+        }
+    }
+}
+dependencies {
+    //compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
+    compile(group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION) {
+        exclude module: 'appcompat-v7'
+    }
+    compile files('libs/3rdparty_login_library_android_4.1.4_source.jar')
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile files('libs/json-simple-1.1.1.jar')
+}
